@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Pixi / environments
+.pixi/
+.venv/
+
+# Data and outputs
+data/
+outputs/
+*.pt
+*.pth
+*.ckpt
+
+# OS/editor
+.DS_Store
+.vscode/
+.idea/

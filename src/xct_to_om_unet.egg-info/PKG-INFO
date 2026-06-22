@@ -1,0 +1,5 @@
+Metadata-Version: 2.4
+Name: xct-to-om-unet
+Version: 0.1.0
+Summary: Supervised U-Net baseline for XCT-to-OM image translation
+Requires-Python: <3.12,>=3.10

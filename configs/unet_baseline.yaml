@@ -1,0 +1,47 @@
+project:
+  name: "xct_to_om_unet_baseline"
+  seed: 42
+  output_dir: "outputs"
+
+data:
+  train_xct_dir: "data/raw/train/xct"
+  train_om_dir: "data/raw/train/om"
+  val_xct_dir: "data/raw/val/xct"
+  val_om_dir: "data/raw/val/om"
+  test_xct_dir: "data/raw/test/xct"
+  test_om_dir: "data/raw/test/om"
+
+  image_size: 256
+  input_channels: 1
+  output_channels: 1
+
+  # If your OM is RGB later, change output_channels to 3.
+  # For first baseline, grayscale OM is scientifically simpler.
+
+  normalize_mode: "minmax_per_image"
+  num_workers: 0
+
+training:
+  epochs: 100
+  batch_size: 4
+  learning_rate: 0.0001
+  weight_decay: 0.00001
+  grad_clip_norm: 1.0
+  early_stopping_patience: 20
+
+  loss:
+    l1_weight: 1.0
+    ssim_weight: 0.2
+
+model:
+  base_channels: 32
+  depth: 4
+  dropout: 0.10
+
+validation:
+  save_prediction_examples: true
+  num_prediction_examples: 8
+
+checkpoint:
+  monitor_metric: "val_loss"
+  mode: "min"

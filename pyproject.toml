@@ -1,0 +1,41 @@
+[project]
+name = "xct-to-om-unet"
+version = "0.1.0"
+description = "Supervised U-Net baseline for XCT-to-OM image translation"
+requires-python = ">=3.10,<3.12"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pixi.workspace]
+channels = ["conda-forge"]
+platforms = ["win-64"]
+
+[tool.pixi.dependencies]
+python = ">=3.10,<3.12"
+numpy = "*"
+scipy = "*"
+pillow = "*"
+tifffile = "*"
+opencv = "*"
+scikit-image = "*"
+matplotlib = "*"
+pandas = "*"
+pyyaml = "*"
+tqdm = "*"
+pytest = "*"
+pip = "*"
+
+[tool.pixi.pypi-dependencies]
+torch = "*"
+torchvision = "*"
+xct-to-om-unet = { path = ".", editable = true }
+
+[tool.pixi.tasks]
+test = "pytest -q"
+train = "python -m xctom.train --config configs/unet_baseline.yaml"
+infer = "python -m xctom.infer --config configs/unet_baseline.yaml"
